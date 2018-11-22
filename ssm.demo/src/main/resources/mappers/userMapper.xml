@@ -1,0 +1,31 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clydezhou.spring.springboot.demo.ssm.dao.IUserInfoDao">
+<!-- 	<resultMap id="UserMap" type="com.clydezhou.spring.springboot.demo.ssm.po">
+		<id property="id" column="uid" />
+		<result property="username" column="username" />
+		<result property="password" column="password" />
+		<result property="address" column="address" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+		<collection property="campanyEntity"
+			resultMap="dao.daoInterface.CampanyDao.CampanyMap" />
+	</resultMap> -->
+
+	<!-- 可以将sql语句独立出来，然后引用 -->
+	<sql id="selectMap">
+		id,name,lastname,age,birthday
+	</sql>
+
+	<!-- 根据id查询用户 -->
+	<select id="getById" parameterType="long" resultType="com.clydezhou.spring.springboot.demo.ssm.po.UserInfo">
+		SELECT
+		<include refid="selectMap" />
+		FROM userinfo
+		WHERE id = #{id}
+	</select>
+	
+	<insert id="add" parameterType="com.clydezhou.spring.springboot.demo.ssm.po.UserInfo"
+	useGeneratedKeys="true" keyProperty="id">
+	   INSERT INTO userinfo VALUES(NULL, #{name}, #{lastname}, #{age}, #{birthday});
+	</insert>
+</mapper>

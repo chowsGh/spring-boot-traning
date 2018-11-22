@@ -1,0 +1,19 @@
+server:
+  port: 80
+#jdbc
+spring:
+  datasource:
+    # %2B是 '+' 的encode后的字符
+    url: jdbc:mysql://localhost:3306/ssm_demo?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: -pl,0OKM
+#mybatis
+mybatis:
+  type-aliases-package: com.clydezhou.spring.springboot.demo.ssm.po
+  mapper-locations: classpath:mappers/*.xml
+  
+#打印sql日志
+logging:
+  level:
+     com.clydezhou.spring.springboot.demo.ssm.mapper : debug
+     com.clydezhou.spring.springboot.demo.ssm.dao : debug
